@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Info about the system</h2>
+    <div id="text-field">To be replaced</div>
+<script>
+        //create websocket connection;
+        const socket = new WebSocket('ws://localhost:3000');
+
+        socket.addEventListener('open', function(event){
+            console.log("Connected to WS server");
+        })
+
+        socket.addEventListener('message', function(event){
+            console.log('Message from server', event.data);
+            document.querySelector("#text-field").innerHTML = `The cpu load is ${event.data}`
+        })
+
+</script>
+</body>
+</html>
